@@ -24,11 +24,11 @@ def check_events():
         messages.append("**Event Leviathan <@&1436064696456446002>**")
 
     if aujourd_hui.weekday() == 1:
-        messages.append("**Inscription GA <@&1436064696456446002>**")
+        messages.append("**Inscription GA**")
          
     if jour == dernier_jour:
         messages.append("**Event Profundity <@&1436064696456446002>**")
-    messages.append("test ping <@&1436064696456446002>")
+        
     for message in messages:
         requests.post(DISCORD_WEBHOOK, json={"content": message})
         print(f"Message envoyé : {message[:40]}...")
