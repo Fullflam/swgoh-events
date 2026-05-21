@@ -18,13 +18,13 @@ def check_events():
     messages = []
 
     if jour == 15:
-        messages.append("# Executor disponible aujourd'hui !\n> L'event Executor est actif — foncez !")
+        messages.append("**Event Executor <@&1105957047826124841>**")
 
     if jour == 20:
-        messages.append("# Leviathan disponible aujourd'hui !\n> L'event Leviathan est actif — foncez !")
+        messages.append("**Event Leviathan <@&1133869314232029369>**")
 
     if jour == dernier_jour:
-        messages.append("# Profondeur disponible aujourd'hui !\n> L'event Profondeur est actif — dernier jour du mois !")
+        messages.append("**Event Profundity <@&1105957094294835271>**")
 
     for message in messages:
         requests.post(DISCORD_WEBHOOK, json={"content": message})
