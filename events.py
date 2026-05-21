@@ -18,17 +18,17 @@ def check_events():
     messages = []
 
     if jour == 15:
-        messages.append("**Event Executor <@&1105957047826124841>**")
+        messages.append("**Event Executor <@&1436064696456446002>**")
 
     if jour == 20:
-        messages.append("**Event Leviathan <@&1133869314232029369>**")
+        messages.append("**Event Leviathan <@&1436064696456446002>**")
 
     if aujourd_hui.weekday() == 1:
-        messages.append("**Inscription GA <@419575551163105281>**")
+        messages.append("**Inscription GA <@&1436064696456446002>**")
          
     if jour == dernier_jour:
-        messages.append("**Event Profundity <@&1105957094294835271>**")
-    
+        messages.append("**Event Profundity <@&1436064696456446002>**")
+    messages.append("<@&1436064696456446002>")
     for message in messages:
         requests.post(DISCORD_WEBHOOK, json={"content": message})
         print(f"Message envoyé : {message[:40]}...")
