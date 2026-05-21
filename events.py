@@ -23,7 +23,7 @@ def check_events():
     if jour == 20:
         messages.append("**Event Leviathan <@&1133869314232029369>**")
 
-     if aujourd_hui.weekday() == 1:
+    if aujourd_hui.weekday() == 1:
         messages.append("**Inscription GA <@419575551163105281>**")
          
     if jour == dernier_jour:
