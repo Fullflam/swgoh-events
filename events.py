@@ -28,11 +28,14 @@ def check_events():
          
     if jour == dernier_jour:
         messages.append("**Event Profundity <@&1436064696456446002>**")
-        
+
+    #test
+    messages.append("test heure d'envoie")
+    
     for message in messages:
         requests.post(DISCORD_WEBHOOK, json={"content": message})
         print(f"Message envoyé : {message[:40]}...")
-
+    
 if __name__ == "__main__":
     print(f"=== Events checker {date.today()} ===")
     check_events()
