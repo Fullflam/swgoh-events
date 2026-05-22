@@ -29,8 +29,8 @@ def check_events():
     if jour == dernier_jour:
         messages.append("**Event Profundity <@&1436064696456446002>**")
 
-    else:
-        messages.append("Aucun évent pour aujourd'hui")
+    #else:
+        #messages.append("Aucun évent pour aujourd'hui")
     
     for message in messages:
         requests.post(DISCORD_WEBHOOK, json={"content": message})
