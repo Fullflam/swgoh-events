@@ -20,7 +20,6 @@ def get_events():
     return res.json().get("gameEvent", [])
 
 def is_gac_active():
-    def is_gac_active():
     aujourd_hui = date.today()
     try:
         events = get_events()
