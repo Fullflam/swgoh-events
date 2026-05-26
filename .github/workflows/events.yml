@@ -15,3 +15,4 @@ jobs:
       - run: python events.py
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          COMLINK_URL: ${{ secrets.COMLINK_URL }}
