@@ -20,13 +20,20 @@ def get_events():
     return res.json().get("gameEvent", [])
 
 def is_gac_active():
+    def is_gac_active():
     aujourd_hui = date.today()
     try:
         events = get_events()
+        print("Events SEASON trouvés:")
+        for e in events:
+            if 'SEASON' in e.get('nameKey', ''):
+                print(f"  {e.get('nameKey')}")
         saison = next(
             (e for e in events if e.get('nameKey', '').startswith('SEASON_') and 'EVENT_NAME' in e.get('nameKey', '')),
             None
         )
+        print("Saison trouvée:", saison.get('nameKey') if saison else None)
+        
         if not saison:
             return False
         for inst in saison.get('instance', []):
