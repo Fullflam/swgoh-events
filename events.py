@@ -23,8 +23,6 @@ def is_gac_active():
     aujourd_hui = date.today()
     try:
         events = get_events()
-        print("Events SEASON trouvés:")
-        saison = None
         for e in events:
             if e.get('nameKey', '').startswith('SEASON_') and 'EVENT_NAME' in e.get('nameKey', ''):
                 for inst in e.get('instance', []):
@@ -34,21 +32,7 @@ def is_gac_active():
                         start_dt = datetime.fromtimestamp(int(start)/1000 if int(start) > 1e10 else int(start)).date()
                         end_dt = datetime.fromtimestamp(int(end)/1000 if int(end) > 1e10 else int(end)).date()
                         if start_dt <= aujourd_hui <= end_dt:
-                            saison = e
                             return True
-        return False
-        
-        if not saison:
-            return False
-        for inst in saison.get('instance', []):
-            start = inst.get('startTime', 0)
-            end = inst.get('endTime', 0)
-            if start and end:
-                # pour les timestamps
-                start_dt = datetime.fromtimestamp(int(start)/1000 if int(start) > 1e10 else int(start)).date()
-                end_dt = datetime.fromtimestamp(int(end)/1000 if int(end) > 1e10 else int(end)).date()
-                if start_dt <= aujourd_hui <= end_dt:
-                    return True
         return False
     except Exception as e:
         print(f"Erreur API events: {e}")
