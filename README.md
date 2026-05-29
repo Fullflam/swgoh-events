@@ -4,4 +4,4 @@ Alertes Discord automatiques pour les events SWGOH.
 - Leviathan (20 du mois)
 - Profundity (dernier jour du mois)
 - Grande Arène (chaque mardi de la saison active)
-- Déclenchement via cron-job.org à midi
+- Déclenchement via cron-job.org à 8h00
