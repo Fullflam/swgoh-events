@@ -11,6 +11,17 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+      - name: Réveiller Comlink
+        run: |
+          for i in {1..10}; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.COMLINK_URL }}/)
+            if [ "$status" = "200" ]; then
+              echo "siuuuuu API OK !"
+              break
+            fi
+            echo "Tentative $i... c'est long et c'est chiant et ca marche pas"
+            sleep 15
+          done
       - run: pip install requests
       - run: python events.py
         env:
