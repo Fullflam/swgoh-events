@@ -4,7 +4,7 @@ from datetime import datetime, date
 from calendar import monthrange
 
 DISCORD_WEBHOOK = os.environ.get("DISCORD_WEBHOOK", "")
-COMLINK_URL = os.environ.get("COMLINK_URL", "https://swgoh-comlink-latest-13vg.onrender.com")
+COMLINK_URL = os.environ.get("COMLINK_URL", "")
 
 def dernier_jour_mois():
     aujourd_hui = date.today()
