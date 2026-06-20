@@ -49,7 +49,7 @@ def check_events():
         messages.append("**Event Executor <@&1436064696456446002>**")
 
     if jour == 20:
-        messages.append("**Event Leviathan <@&1436064696456446002>**")
+        messages.append("**Event Leviathan**")
 
     if aujourd_hui.weekday() == 1 and is_gac_active():
         messages.append("**Inscription GA**")
