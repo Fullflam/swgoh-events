@@ -85,7 +85,7 @@ def check_events():
 
     
     next_tb = get_next_tb_date()
-    if next_tb and next_tb == aujourd_hui + timedelta(days=1):
+    if next_tb and next_tb == aujourd_hui:
         messages.append("Rappel TB <@&1436064696456446002>")
 
     for message in messages:
