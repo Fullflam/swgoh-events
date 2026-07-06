@@ -25,5 +25,6 @@ jobs:
       - run: pip install requests
       - run: python events.py
         env:
+          ALLY_CODE: ${{ secrets.ALLY_CODE }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           COMLINK_URL: ${{ secrets.COMLINK_URL }}
