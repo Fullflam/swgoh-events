@@ -79,15 +79,15 @@ def check_events():
         messages.append("**Event Executor <@&1436064696456446002>**")
     if jour == 20:
         messages.append("**Event Leviathan**")
-    if aujourd_hui.weekday() == 1 and is_gac_active():
-        messages.append("**Inscription GA**")
     if jour == dernier_jour:
         messages.append("**Event Profundity <@&1436064696456446002>**")
     #TB
     next_tb = get_next_tb_date()
     if next_tb and next_tb == aujourd_hui + timedelta(days=1):
         messages.append("TB <@&1436064696456446002>")
-
+    #GAC
+    if aujourd_hui.weekday() == 1 and is_gac_active():
+        messages.append("**Inscription GA**")
     #Envoie final
     for message in messages:
         requests.post(DISCORD_WEBHOOK, json={"content": message})
