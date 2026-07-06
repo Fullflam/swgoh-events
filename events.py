@@ -93,5 +93,6 @@ def check_events():
         print(f"Message envoyé : {message[:40]}...")
 
 if __name__ == "__main__":
+    print(f"ALLY_CODE: '{ALLY_CODE}' type: {type(ALLY_CODE)}")
     print(f"=== Events checker {date.today()} ===")
     check_events()
