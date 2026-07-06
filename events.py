@@ -78,7 +78,7 @@ def check_events():
     if jour == 15:
         messages.append("**Event Executor <@&1436064696456446002>**")
     if jour == 20:
-        messages.append("**Event Leviathan**")
+        messages.append("**Event Leviathan <@860450531315286036>**")
     if jour == dernier_jour:
         messages.append("**Event Profundity <@&1436064696456446002>**")
     #TB
