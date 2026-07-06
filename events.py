@@ -73,7 +73,8 @@ def check_events():
     jour = aujourd_hui.day
     dernier_jour = dernier_jour_mois()
     messages = []
-
+    
+    #vaisseaux amiraux
     if jour == 15:
         messages.append("**Event Executor <@&1436064696456446002>**")
     if jour == 20:
@@ -82,12 +83,12 @@ def check_events():
         messages.append("**Inscription GA**")
     if jour == dernier_jour:
         messages.append("**Event Profundity <@&1436064696456446002>**")
-
-    
+    #TB
     next_tb = get_next_tb_date()
     if next_tb and next_tb == aujourd_hui + timedelta(days=1):
         messages.append("TB <@&1436064696456446002>")
 
+    #Envoie final
     for message in messages:
         requests.post(DISCORD_WEBHOOK, json={"content": message})
         print(f"Message envoyé : {message[:40]}...")
