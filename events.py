@@ -95,10 +95,4 @@ def check_events():
         print(f"Message envoyé : {message[:40]}...")
 
 if __name__ == "__main__":
-    print(f"ALLY_CODE: '{ALLY_CODE}' type: {type(ALLY_CODE)}")
-    print(f"=== Events checker {date.today()} ===")
-    aujourd_hui = date.today()
-    print(f"weekday: {aujourd_hui.weekday()} (0=lundi, 6=dimanche)")
-    print(f"is_gac_active: {is_gac_active()}")
-    print(f"next_tb: {get_next_tb_date()}")
     check_events()
