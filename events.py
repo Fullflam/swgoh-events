@@ -61,7 +61,7 @@ def is_gac_active():
                     if start and end:
                         start_dt = datetime.fromtimestamp(int(start)/1000 if int(start) > 1e10 else int(start)).date()
                         end_dt = datetime.fromtimestamp(int(end)/1000 if int(end) > 1e10 else int(end)).date()
-                        if start_dt <= aujourd_hui <= end_dt:
+                        if start_dt <= aujourd_hui < end_dt:
                             return True
         return False
     except Exception as e:
