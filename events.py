@@ -86,7 +86,7 @@ def check_events():
     if next_tb and next_tb == aujourd_hui + timedelta(days=1):
         messages.append("TB <@&1436064696456446002>")
     #GAC
-    if aujourd_hui.weekday() == 1 and is_gac_active():
+    if aujourd_hui.weekday() == 2 and is_gac_active():
         
         messages.append("**Inscription GA**")
     #Envoie final
