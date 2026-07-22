@@ -1,0 +1,2 @@
+VAISSEAU_STARS = {
+}
