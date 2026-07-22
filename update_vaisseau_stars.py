@@ -5,7 +5,7 @@ import requests
 import subprocess
 
 COMLINK_URL = os.environ.get("COMLINK_URL", "")
-GITHUB_TOKEN_TRACKER = os.environ.get("GITHUB_TOKEN_TRACKER", "")
+GH_TOKEN = os.environ.get("GH_TOKEN", "")
 MEMBRES_API_URL = "https://api.github.com/repos/Fullflam/swgoh-tracker/contents/membres.py"
 
 SHIP_IDS = {
@@ -16,7 +16,7 @@ SHIP_IDS = {
 
 def get_membres():
     headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN_TRACKER}",
+        "Authorization": f"Bearer {GH_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
     }
     r = requests.get(MEMBRES_API_URL, headers=headers, timeout=15)
