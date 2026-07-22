@@ -1,8 +1,8 @@
 name: SWGOH Events
-
 on:
   workflow_dispatch:
-
+permissions:
+  contents: write
 jobs:
   events:
     runs-on: ubuntu-latest
@@ -23,8 +23,15 @@ jobs:
             sleep 15
           done
       - run: pip install requests
-      - run: python events.py
+      - name: Update vaisseau stars
+        run: python update_vaisseau_stars.py
+        env:
+          COMLINK_URL: ${{ secrets.COMLINK_URL }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Check events
+        run: python events.py
         env:
           ALLY_CODE: ${{ secrets.ALLY_CODE }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           COMLINK_URL: ${{ secrets.COMLINK_URL }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
