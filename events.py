@@ -8,7 +8,7 @@ from vaisseau_stars import VAISSEAU_STARS
 DISCORD_WEBHOOK = os.environ.get("DISCORD_WEBHOOK", "")
 COMLINK_URL = os.environ.get("COMLINK_URL", "")
 ALLY_CODE = os.environ.get("ALLY_CODE", "")
-GITHUB_TOKEN_TRACKER = os.environ.get("GITHUB_TOKEN_TRACKER", "")
+GH_TOKEN = os.environ.get("GH_TOKEN", "")
 MEMBRES_API_URL = "https://api.github.com/repos/Fullflam/swgoh-tracker/contents/membres.py"
 
 def dernier_jour_mois():
@@ -72,7 +72,7 @@ def is_gac_active():
 
 def get_membres():
     headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN_TRACKER}",
+        "Authorization": f"Bearer {GH_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
     }
     r = requests.get(MEMBRES_API_URL, headers=headers, timeout=15)
