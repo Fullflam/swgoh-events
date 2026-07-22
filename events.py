@@ -1,11 +1,15 @@
 import requests
 import os
+import base64
 from datetime import datetime, date, timedelta
 from calendar import monthrange
+from vaisseau_stars import VAISSEAU_STARS
 
 DISCORD_WEBHOOK = os.environ.get("DISCORD_WEBHOOK", "")
 COMLINK_URL = os.environ.get("COMLINK_URL", "")
 ALLY_CODE = os.environ.get("ALLY_CODE", "")
+GITHUB_TOKEN_TRACKER = os.environ.get("GITHUB_TOKEN_TRACKER", "")
+MEMBRES_API_URL = "https://api.github.com/repos/Fullflam/swgoh-tracker/contents/membres.py"
 
 def dernier_jour_mois():
     aujourd_hui = date.today()
@@ -29,7 +33,6 @@ def get_next_tb_date():
         )
         joueur.raise_for_status()
         guild_id = joueur.json().get("guildId")
-
         guilde = requests.post(
             f"{COMLINK_URL}/guild",
             json={"payload": {"guildId": guild_id}, "enums": False},
@@ -38,7 +41,6 @@ def get_next_tb_date():
         guilde.raise_for_status()
         data = guilde.json()
         guild = data.get("guild", data)
-
         next_refresh = guild.get("nextChallengesRefresh")
         if next_refresh:
             ts = int(next_refresh)
@@ -68,27 +70,58 @@ def is_gac_active():
         print(f"Erreur API events: {e}")
         return False
 
+def get_membres():
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN_TRACKER}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    r = requests.get(MEMBRES_API_URL, headers=headers, timeout=15)
+    r.raise_for_status()
+    content = base64.b64decode(r.json()["content"]).decode("utf-8")
+    namespace = {}
+    exec(content, namespace)
+    return namespace["MEMBRES"]
+
+def get_mentions_vaisseau(vaisseau_key):
+    membres = get_membres()
+    mentions = []
+    for player_id, ships in VAISSEAU_STARS.items():
+        niveau = ships.get(vaisseau_key, 0)
+        if 1 <= niveau <= 6:
+            discord_id = membres.get(player_id)
+            if discord_id:
+                mentions.append(f"<@{discord_id}>")
+    return mentions
+
 def check_events():
     aujourd_hui = date.today()
     jour = aujourd_hui.day
     dernier_jour = dernier_jour_mois()
     messages = []
-    
+
     #vaisseaux amiraux
     if jour == 15:
-        messages.append("**Event Executor <@&1436064696456446002>**")
+        mentions = get_mentions_vaisseau("executor")
+        if mentions:
+            messages.append(f"**Event Executor** {' '.join(mentions)}")
     if jour == 20:
-        messages.append("**Event Leviathan <@860450531315286036> :)**")
+        mentions = get_mentions_vaisseau("leviathan")
+        if mentions:
+            messages.append(f"**Event Leviathan** {' '.join(mentions)}")
     if jour == dernier_jour:
-        messages.append("**Event Profundity <@&1436064696456446002>**")
+        mentions = get_mentions_vaisseau("profundity")
+        if mentions:
+            messages.append(f"**Event Profundity** {' '.join(mentions)}")
+
     #TB
     next_tb = get_next_tb_date()
     if next_tb and next_tb == aujourd_hui + timedelta(days=1):
         messages.append("TB <@&1436064696456446002>")
+
     #GAC
     if aujourd_hui.weekday() == 2 and is_gac_active():
-        
         messages.append("**Inscription GA**")
+
     #Envoie final
     for message in messages:
         requests.post(DISCORD_WEBHOOK, json={"content": message})
