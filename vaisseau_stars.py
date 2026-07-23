@@ -129,11 +129,6 @@ VAISSEAU_STARS = {
         "profundity": 0,
         "leviathan": 0
     },
-    "gw3a2aR_TAuS0WHiA-5Gkg": {
-        "executor": 0,
-        "profundity": 0,
-        "leviathan": 0
-    },
     "JtTVQUm_Qqy33v2i3meBXg": {
         "executor": 0,
         "profundity": 0,
@@ -165,6 +160,11 @@ VAISSEAU_STARS = {
         "leviathan": 0
     },
     "aTEpzTRMRzm8EWUPJwxSjA": {
+        "executor": 0,
+        "profundity": 0,
+        "leviathan": 0
+    },
+    "UZQh5tBRR4yaKEL66S9jJg": {
         "executor": 0,
         "profundity": 0,
         "leviathan": 0
